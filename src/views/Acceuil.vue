@@ -1,17 +1,17 @@
 <template>
   <div>
-    <Navbar />
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-5 text-center">
-          <!-- <h3>Recette search:</h3>  -->
-          <!-- <input type="text" v-model="name" @keypress.enter="fetchmeal(name)" class="form-control"> -->
         </div>
       </div>
       <div class="row mt-3">
-        <div v-for="cat in getCategories" :key="cat.idCategory" class="col-md-2 col-sm-6 my-2">
+        <div v-for="cat in getCategories" :key="cat.idCategory" class="col-md-3 col-sm-4 col-6 col-lg-2  my-2">
           <Card :categorie="cat"/>
         </div>
+        <div v-if="getMeals.length===0" class="text-secondary position-absolute top-50 start-50 translate-middle">
+                <h3>Catégorie not found</h3> 
+            </div>
       </div>
     </div>
   </div>
@@ -19,19 +19,19 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Card from "./Card.vue"
-import Navbar from "./Navbar.vue";
+import Card from "../components/Card.vue"
+
 export default {
   name: 'HelloWorld',
   components:{
-    Card,Navbar
+    Card
   },
   data(){
     return({
       name:''
     })
   },
-  computed:mapGetters(['getMeal','getCategories']),
+  computed:mapGetters(['getCategories']),
   methods:mapActions(['fetchCategories']),
   created(){
     this.fetchCategories()
