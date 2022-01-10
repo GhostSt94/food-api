@@ -1,4 +1,4 @@
-# spotify-api
+# food-api
 
 ## Project setup
 ```
